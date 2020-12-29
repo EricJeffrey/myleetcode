@@ -7,6 +7,11 @@
             "args": [
                 "-g",
                 "-Wall",
+                "-Wshadow",
+                "-Wno-unused-variable",
+                "-Wfloat-equal",
+                "-Wsign-compare",
+                "-Wconversion",
                 "${file}",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
