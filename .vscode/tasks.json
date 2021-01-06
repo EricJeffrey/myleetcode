@@ -14,7 +14,8 @@
                 "-Wconversion",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-std=c++17"
             ],
             "options": {
                 "cwd": "C:\\Software\\mingw64\\bin"
