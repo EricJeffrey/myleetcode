@@ -38,5 +38,19 @@
             ""
         ],
         "description": "Include common header files"
+    },
+    "common list node": {
+        "prefix": "listnode",
+        "body": [
+            "// Definition for a binary tree node.",
+            "struct TreeNode {",
+            "    int val;",
+            "    TreeNode *left;",
+            "    TreeNode *right;",
+            "    TreeNode(int x) : val(x), left(NULL), right(NULL) {}",
+            "};",
+            ""
+        ],
+        "description": "List Node definition from LeetCode"
     }
 }
