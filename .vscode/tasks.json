@@ -20,10 +20,27 @@
             "options": {
                 "cwd": "C:\\Software\\mingw64\\bin"
             },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
+            "problemMatcher": "$gcc"
+        },
+        {
+            "type": "shell",
+            "label": "g++ build active file",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-g",
+                "-Wall",
+                "-Wshadow",
+                "-Wno-unused-variable",
+                "-Wfloat-equal",
+                "-Wsign-compare",
+                "-Wconversion",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.exe",
+                "-std=c++11"
+            ],
+            "group": "build",
             "problemMatcher": "$gcc"
         }
     ],
