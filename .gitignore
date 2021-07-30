@@ -2,3 +2,5 @@
 test.cpp
 
 .vscode/settings.json
+**/eltetris/*.js
+**/eltetris/*.html
