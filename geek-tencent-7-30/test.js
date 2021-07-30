@@ -284,7 +284,7 @@ moves.reduce((pv, v) => pv + "," + v, "").substr(1) + ",N";
 
 
 let rsp = await(fetch("api/upload", {
-    body: JSON.stringify({ record: s, score: 90090 }),
+    body: JSON.stringify({ record: s, score: 60392 }),
     method: "POST", headers: { 'Content-Type': 'application/json;charset=utf-8' }
 }));
 
