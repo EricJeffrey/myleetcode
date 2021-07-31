@@ -50,7 +50,7 @@ $(function() {
         wait_interval = 1000 / parseInt($("#speed_slider").slider("value"));
         $("#speed").val(ui.value);
       },
-      value: 50,
+      value: 100,
     });
   $("#num_columns").val($("#num_column_slider").slider("value"));
   $("#num_rows").val($("#num_row_slider").slider("value"));

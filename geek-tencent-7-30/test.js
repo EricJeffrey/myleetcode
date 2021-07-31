@@ -275,16 +275,32 @@ for (let i = 0; i < Math.min(window.tttt_moves.length, 1000000); i++) {
     }
     // mincol -= 1;
     let movestotake = tmpmove.column - mincol;
-    console.log(movestotake);
     if (movestotake != 0)
         moves.push((movestotake > 0 ? 'R' : 'L') + Math.abs(movestotake));
+    if (tmpmove.landingHeight == 19) break;
     moves.push('D' + (20 - tmpmove.landingHeight - 1));
 }
-moves.reduce((pv, v) => pv + "," + v, "").substr(1) + ",N";
+let s = moves.reduce((pv, v) => pv + "," + v, "").substr(1) + ",N";
+let ncnt = 0;
+for (let i = 0; i < s.length; i++) {
+    if (s[i] == 'N') {
+        ncnt++;
+    }
+    if (ncnt == 10000) {
+        s = s.substr(0, i - 1);
+        break;
+    }
+}
+console.log(s);
+console.log(window.tttt_scores.reduce((pv, v) => pv + v, 0));
 
 
-let rsp = await(fetch("api/upload", {
-    body: JSON.stringify({ record: s, score: 60392 }),
-    method: "POST", headers: { 'Content-Type': 'application/json;charset=utf-8' }
-}));
+
+let doit = function (score = 0) {
+    axios.post(`api/upload`, { record: s, score: score })
+        .then(({ data }) => {
+            console.log('提交结果', data);
+            if (data.info) { console.log(data.info) }
+        });
+}
 

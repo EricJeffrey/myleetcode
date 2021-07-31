@@ -143,10 +143,16 @@ ElTetris.prototype.pickMove = function (piece) {
  */
 ElTetris.prototype.evaluateBoard = function (last_move, board) {
   return GetLandingHeight(last_move, board) * -4.500158825082766 +
-    last_move.rows_removed * 3.4181268101392694 +
+    // last_move.rows_removed * 3.4181268101392694 +
+    last_move.rows_removed * 4.9181268101392694 +
+    (last_move.occupiedGridCount > 100 ? last_move.occupiedGridCount * -1 : last_move.occupiedGridCount * 80) +
+    (last_move.occupiedGridCount / 100 - 1) * 1 +
     GetRowTransitions(board, this.number_of_columns) * -3.2178882868487753 +
-    GetColumnTransitions(board, this.number_of_columns) * -9.348695305445199 +
-    GetNumberOfHoles(board, this.number_of_columns) * -7.899265427351652 +
+    // GetColumnTransitions(board, this.number_of_columns) * -9.348695305445199 +
+    GetColumnTransitions(board, this.number_of_columns) * - 8.348695305445199 +
+    // GetNumberOfHoles(board, this.number_of_columns) * -7.899265427351652 +
+    GetNumberOfHoles(board, this.number_of_columns) * - 9.899265427351652 +
+    // GetWellSums(board, this.number_of_columns) * -3.3855972247263626;
     GetWellSums(board, this.number_of_columns) * -3.3855972247263626;
 };
 
@@ -253,6 +259,9 @@ ElTetris.prototype.getTenNextPiece = function () {
   tttt.curRandomNum = tttt.getRandomNum(tttt.curRandomNum);
   let tmpBrickInfo = tttt.getBrickInfo(tttt.curRandomNum, tttt.brickCount, [4, 0], true);
   tttt.brickCount += 1;
+  if (tttt.brickCount >= 10000) {
+    return null;
+  }
   let tmpbrickRaw = tmpBrickInfo.brickRawInfo
   if (window.tttt_pieces == undefined) {
     window.tttt_pieces = [];
