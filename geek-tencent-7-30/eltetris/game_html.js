@@ -16,56 +16,56 @@
   You should have received a copy of the GNU Affero General Public License
   along with El-Tetris.  If not, see <http://www.gnu.org/licenses/>.
 */
-$(function() {
+$(function () {
   $("#num_column_slider").slider({
-      min:4, 
-      max: 10,
-      change: function( event, ui ) {
-        $("#num_columns").val(ui.value);
-      },
-      slide: function( event, ui ) {
-        $("#num_columns").val(ui.value);
-      },
-      value: 10
-    });
+    min: 4,
+    max: 10,
+    change: function (event, ui) {
+      $("#num_columns").val(ui.value);
+    },
+    slide: function (event, ui) {
+      $("#num_columns").val(ui.value);
+    },
+    value: 10
+  });
   $("#num_row_slider").slider({
-      min:4,
-      max: 20,
-      change: function(event, ui) {
-        $("#num_rows").val(ui.value);
-      },
-      slide: function(event, ui) {
-        $("#num_rows").val(ui.value);
-      },
-      value: 20
-    });
+    min: 4,
+    max: 20,
+    change: function (event, ui) {
+      $("#num_rows").val(ui.value);
+    },
+    slide: function (event, ui) {
+      $("#num_rows").val(ui.value);
+    },
+    value: 18
+  });
   $("#speed_slider").slider({
-      min:1,
-      max: 100,
-      change: function(event, ui) {
-        wait_interval = 1000 / parseInt($("#speed_slider").slider("value"));
-        $("#speed").val(ui.value);
-      },
-      slide: function(event, ui) {
-        wait_interval = 1000 / parseInt($("#speed_slider").slider("value"));
-        $("#speed").val(ui.value);
-      },
-      value: 100,
-    });
+    min: 1,
+    max: 100,
+    change: function (event, ui) {
+      wait_interval = 1000 / parseInt($("#speed_slider").slider("value"));
+      $("#speed").val(ui.value);
+    },
+    slide: function (event, ui) {
+      wait_interval = 1000 / parseInt($("#speed_slider").slider("value"));
+      $("#speed").val(ui.value);
+    },
+    value: 100,
+  });
   $("#num_columns").val($("#num_column_slider").slider("value"));
   $("#num_rows").val($("#num_row_slider").slider("value"));
   $("#speed").val($("#speed_slider").slider("value"));
   wait_interval = 1000 / parseInt($("#speed_slider").slider("value"));
 
-  $( "#play" ).button({
-      text: false,
-      icons: {
-        primary: "ui-icon-play"
-      }
-    })
-    .click(function() {
+  $("#play").button({
+    text: false,
+    icons: {
+      primary: "ui-icon-play"
+    }
+  })
+    .click(function () {
       var options;
-      if ( $( this ).text() === "play" ) {
+      if ($(this).text() === "play") {
         // Un-pause the game
         paused = false;
 
@@ -73,7 +73,7 @@ $(function() {
           play();
         } else {
           startGame(parseInt($("#num_columns").val()),
-              parseInt($("#num_rows").val()));
+            parseInt($("#num_rows").val()));
         }
         options = {
           label: "pause",
@@ -90,34 +90,35 @@ $(function() {
           }
         };
       }
-      $( this ).button( "option", options );
+      $(this).button("option", options);
     });
-    $( "#stop" ).button({
-      text: false,
-      icons: {
-        primary: "ui-icon-stop"
-      }
-    })
-    .click(function() {
+  $("#stop").button({
+    text: false,
+    icons: {
+      primary: "ui-icon-stop"
+    }
+  })
+    .click(function () {
       paused = true;
       game_started = false;
       enableSliders();
-      $( "#play" ).button( "option", {
+      $("#play").button("option", {
         label: "play",
         icons: {
           primary: "ui-icon-play"
         }
       });
     });
-  $( "#hardcore" ).button().click(function() {
+  $("#hardcore").button().click(function () {
     if (!hardcore) {
-      if (confirm("Hardcore mode speeds up the game by using more of your " +
-          "computer's resources. Your browser may feel sluggish. Continue?")) {
-        hardcore = true;
-      } else {
-        $('#hardcore').prop('checked', false);
-        $('#hardcore_label').removeClass("ui-state-active");
-      }
+      hardcore = true;
+      // if (confirm("Hardcore mode speeds up the game by using more of your " +
+      //     "computer's resources. Your browser may feel sluggish. Continue?")) {
+      //   hardcore = true;
+      // } else {
+      //   $('#hardcore').prop('checked', false);
+      //   $('#hardcore_label').removeClass("ui-state-active");
+      // }
     } else {
       hardcore = false;
     }
@@ -169,8 +170,9 @@ function play() {
       }
     } else {
       document.getElementById('score').innerHTML = eltetris.rows_completed;
-      alert('Game over. Rows completed: ' + eltetris.rows_completed);
+      // alert('Game over. Rows completed: ' + eltetris.rows_completed);
       $("#stop").click();
+      // window.tttt_recordState();
       return;
     }
 
@@ -180,7 +182,7 @@ function play() {
 
 function playHardcore() {
   var counter = 0;
-  while (eltetris.play()) {
+  while (!eltetris.play().game_over) {
     ++counter;
 
     if (counter == 10000) {

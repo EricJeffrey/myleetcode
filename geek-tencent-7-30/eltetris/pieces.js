@@ -15,7 +15,7 @@
 
   You should have received a copy of the GNU Affero General Public License
   along with El-Tetris.  If not, see <http://www.gnu.org/licenses/>.
-*/ 
+*/
 
 /**
  * Defines the shapes and dimensions of the tetrominoes.
@@ -31,16 +31,21 @@ var PIECES = new Array();
   X
   */
 PIECES[0] = [
-    {
-      orientation: [1, 1, 1, 1],
-      width: 1,
-      height: 4
-    },
-    {
-      orientation: [parse('1111')],
-      width: 4,
-      height: 1
-    }
+  {
+    orientation: [1, 1, 1, 1],
+    width: 1,
+    height: 4,
+    // 在 tetris-config 中对应的最左边块的起始位置
+    startColumn: 4,
+    heightOfVisiblePartOnOccur: 2
+  },
+  {
+    orientation: [parse('1111')],
+    width: 4,
+    height: 1,
+    startColumn: 4 - 1,
+    heightOfVisiblePartOnOccur: 1
+  }
 ];
 
 /**
@@ -52,40 +57,48 @@ PIECES[0] = [
  *        O      O
  */
 PIECES[1] = [
-    {
-      orientation: [
-          parse('111'),
-          parse('010')
-      ].reverse(),
-      width: 3,
-      height: 2,
-    },
-    {
-      orientation: [
-          parse('01'),
-          parse('11'),
-          parse('01')
-      ].reverse(),
-      width: 2,
-      height: 3,
-    },
-    {
-      orientation: [
-          parse('010'),
-          parse('111')
-      ].reverse(),
-      width: 3,
-      height: 2,
-    },
-    {
-      orientation: [
-          parse('10'),
-          parse('11'),
-          parse('10')
-      ].reverse(),
-      width: 2,
-      height: 3,
-    }, 
+  {
+    orientation: [
+      parse('111'),
+      parse('010')
+    ].reverse(),
+    width: 3,
+    height: 2,
+    startColumn: 4 - 1,
+    heightOfVisiblePartOnOccur: 2
+  },
+  {
+    orientation: [
+      parse('01'),
+      parse('11'),
+      parse('01')
+    ].reverse(),
+    width: 2,
+    height: 3,
+    startColumn: 4 - 1,
+    heightOfVisiblePartOnOccur: 2
+  },
+  {
+    orientation: [
+      parse('010'),
+      parse('111')
+    ].reverse(),
+    width: 3,
+    height: 2,
+    startColumn: 4 - 1,
+    heightOfVisiblePartOnOccur: 1
+  },
+  {
+    orientation: [
+      parse('10'),
+      parse('11'),
+      parse('10')
+    ].reverse(),
+    width: 2,
+    height: 3,
+    startColumn: 4,
+    heightOfVisiblePartOnOccur: 2
+  },
 ];
 
 /**
@@ -96,14 +109,16 @@ PIECES[1] = [
  * OO
  */
 PIECES[2] = [
-    {
-      orientation: [
-          parse('11'),
-          parse('11')
-      ],
-      width: 2,
-      height: 2,
-    },
+  {
+    orientation: [
+      parse('11'),
+      parse('11')
+    ],
+    width: 2,
+    height: 2,
+    startColumn: 4,
+    heightOfVisiblePartOnOccur: 1
+  },
 ];
 
 /**
@@ -115,40 +130,48 @@ PIECES[2] = [
  *        O           OO
  */
 PIECES[3] = [
-    {
-      orientation: [
-          parse('01'),
-          parse('01'),
-          parse('11')
-      ].reverse(),
-      width: 2,
-      height: 3,
-    },
-    {
-      orientation: [
-          parse('100'),
-          parse('111')
-      ].reverse(),
-      width: 3,
-      height: 2,
-    },
-    {
-      orientation: [
-          parse('11'),
-          parse('10'),
-          parse('10')
-      ].reverse(),
-      width: 2,
-      height: 3,
-    },
-    {
-      orientation: [
-          parse('111'),
-          parse('001'),
-      ].reverse(),
-      width: 3,
-      height: 2,
-    },
+  {
+    orientation: [
+      parse('01'),
+      parse('01'),
+      parse('11')
+    ].reverse(),
+    width: 2,
+    height: 3,
+    startColumn: 4 - 1,
+    heightOfVisiblePartOnOccur: 1
+  },
+  {
+    orientation: [
+      parse('100'),
+      parse('111')
+    ].reverse(),
+    width: 3,
+    height: 2,
+    startColumn: 4,
+    heightOfVisiblePartOnOccur: 1
+  },
+  {
+    orientation: [
+      parse('11'),
+      parse('10'),
+      parse('10')
+    ].reverse(),
+    width: 2,
+    height: 3,
+    startColumn: 4,
+    heightOfVisiblePartOnOccur: 3
+  },
+  {
+    orientation: [
+      parse('111'),
+      parse('001'),
+    ].reverse(),
+    width: 3,
+    height: 2,
+    startColumn: 4 - 2,
+    heightOfVisiblePartOnOccur: 2
+  },
 ];
 
 /**
@@ -160,41 +183,49 @@ PIECES[3] = [
  *         O           OO
  */
 PIECES[4] = [
-    {
-      orientation: [
-          parse('10'),
-          parse('10'),
-          parse('11')
-      ].reverse(),
-      width: 2,
-      height: 3,
-    },
-    {
-      orientation: [
-          parse('111'),
-          parse('100'),
-      ].reverse(),
-      width: 3,
-      height: 2,
-    },
-    {
-      orientation: [
-          parse('11'),
-          parse('01'),
-          parse('01')
-      ].reverse(),
-      width: 2,
-      height: 3,
-    },
-    {
-      orientation: [
-          parse('001'),
-          parse('111')
-      ].reverse(),
-      width: 3,
-      height: 2,
-    },
-    
+  {
+    orientation: [
+      parse('10'),
+      parse('10'),
+      parse('11')
+    ].reverse(),
+    width: 2,
+    height: 3,
+    startColumn: 4,
+    heightOfVisiblePartOnOccur: 1
+  },
+  {
+    orientation: [
+      parse('111'),
+      parse('100'),
+    ].reverse(),
+    width: 3,
+    height: 2,
+    startColumn: 4,
+    heightOfVisiblePartOnOccur: 2
+  },
+  {
+    orientation: [
+      parse('11'),
+      parse('01'),
+      parse('01')
+    ].reverse(),
+    width: 2,
+    height: 3,
+    startColumn: 4 - 1,
+    heightOfVisiblePartOnOccur: 3
+  },
+  {
+    orientation: [
+      parse('001'),
+      parse('111')
+    ].reverse(),
+    width: 3,
+    height: 2,
+    startColumn: 4 - 2,
+    heightOfVisiblePartOnOccur: 1
+  },
+
 ];
 
 
@@ -207,23 +238,27 @@ PIECES[4] = [
  *         O
  */
 PIECES[5] = [
-    {
-      orientation: [
-          parse('011'),
-          parse('110')
-      ].reverse(),
-      width: 3,
-      height: 2,
-    },
-    {
-      orientation: [
-          parse('10'),
-          parse('11'),
-          parse('01')
-      ].reverse(),
-      width: 2,
-      height: 3,
-    },
+  {
+    orientation: [
+      parse('011'),
+      parse('110')
+    ].reverse(),
+    width: 3,
+    height: 2,
+    startColumn: 4 - 1,
+    heightOfVisiblePartOnOccur: 1
+  },
+  {
+    orientation: [
+      parse('10'),
+      parse('11'),
+      parse('01')
+    ].reverse(),
+    width: 2,
+    height: 3,
+    startColumn: 4 - 1,
+    heightOfVisiblePartOnOccur: 2
+  },
 ];
 
 /**
@@ -235,23 +270,27 @@ PIECES[5] = [
  *        O
  */
 PIECES[6] = [
-    {
-      orientation: [
-          parse('110'),
-          parse('011')
-      ].reverse(),
-      width: 3,
-      height: 2,
-    },
-    {
-      orientation: [
-          parse('01'),
-          parse('11'),
-          parse('10')
-      ].reverse(),
-      width: 2,
-      height: 3,
-    },
+  {
+    orientation: [
+      parse('110'),
+      parse('011')
+    ].reverse(),
+    width: 3,
+    height: 2,
+    startColumn: 4 - 1,
+    heightOfVisiblePartOnOccur: 1
+  },
+  {
+    orientation: [
+      parse('01'),
+      parse('11'),
+      parse('10')
+    ].reverse(),
+    width: 2,
+    height: 3,
+    startColumn: 4 - 1,
+    heightOfVisiblePartOnOccur: 2
+  },
 ];
 
 function parse(x) {

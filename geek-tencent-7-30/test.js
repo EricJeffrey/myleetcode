@@ -238,9 +238,10 @@ const config = {
 let tttt = new Tetris();
 tttt.curRandomNum = tttt.getRandomNum(tttt.curRandomNum);
 let l = []
-for (let i = 0; i < 100; i++) {
-    l.push(tttt.getBrickInfo(tttt.curRandomNum, tttt.brickCount + 1, [4, 0], true).brickRawInfo);
+for (let i = 0; i < 10000; i++) {
+    l.push(tttt.getBrickInfo(tttt.curRandomNum, tttt.brickCount, [4, 0], true).brickRawInfo);
     tttt.curRandomNum = tttt.getRandomNum(tttt.curRandomNum);
+    tttt.brickCount += 1;
 }
 
 var moves = []
@@ -304,3 +305,40 @@ let doit = function (score = 0) {
         });
 }
 
+/*
+随机测试
+function shuffle(array) {
+    var currentIndex = array.length, randomIndex;
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    return array;
+}
+let nums7 = [], nums8 = [], nums9 = [];
+for (let i = 0.8; i <= 1.5; i += 0.01) nums7.push(i);
+for (let i = 90; i <= 160; i++) nums8.push(i);
+for (let i = 2; i <= 8; i += 0.1) nums9.push(i);
+let nums = [];
+for (let i = 0; i < nums7.length; i++) {
+    for (let j = 0; j < nums8.length; j++) {
+        for (let k = 0; k < nums9.length; k++) {
+            nums.push({ i: nums7[i], j: nums8[j], k: nums9[k] });
+        }
+    }
+}
+nums = shuffle(nums);
+
+for (let i = 0; i < nums.length; i++) {
+    window.nums[7] = nums[i].i;
+    window.nums[8] = nums[i].j;
+    window.nums[9] = nums[i].k;
+    $("#play").click();
+    $("#play").click();
+}
+
+*/
