@@ -41,7 +41,7 @@ struct Tmp {
     int64_t buff;
     int64_t end;
     Tmp(int64_t s, int64_t b) : start(s), buff(b), end(s + b) {}
-    bool operator<(const Tmp &t) {
+    bool operator<(const Tmp &t) const {
         if (start != t.start)
             return start < t.start;
         return end < t.end;
@@ -65,7 +65,8 @@ int main(int argc, char const *argv[]) {
             int curmax = 0;
             for (int j = 0; j < k; j++) {
                 cin >> a[i][j];
-                curmax = max(curmax, a[i][j]);
+                // curmax = max(curmax, a[i][j]);
+                curmax = max(curmax, a[i][j] + 1 - j);
             }
             if (a[i][0] == curmax)
                 curmax += 1;
