@@ -3,7 +3,7 @@
         {
             "type": "shell",
             "label": "(win) g++ build active file",
-            "command": "C:\\Software\\mingw64\\bin\\g++.exe",
+            "command": "g++",
             "args": [
                 "-g",
                 "-Wall",
@@ -17,9 +17,7 @@
                 "${fileDirname}\\${fileBasenameNoExtension}.exe",
                 "-std=c++17"
             ],
-            "options": {
-                "cwd": "C:\\Software\\mingw64\\bin"
-            },
+            "options": {},
             "group": "build",
             "problemMatcher": "$gcc"
         },
