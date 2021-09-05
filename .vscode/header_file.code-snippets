@@ -39,8 +39,8 @@
         ],
         "description": "Include common header files"
     },
-    "common list node": {
-        "prefix": "listnode",
+    "common tree node": {
+        "prefix": "treenode",
         "body": [
             "// Definition for a binary tree node.",
             "struct TreeNode {",
