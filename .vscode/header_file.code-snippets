@@ -54,5 +54,29 @@
             ""
         ],
         "description": "List Node definition from LeetCode"
+    },
+    "tree array": {
+        "prefix": "treearray",
+        "body": [
+            "vector<int> tree($1, 0);",
+            "int lowbit(int x) {",
+            "  return x & -x;",
+            "}",
+            "void add(vector<int> &tree, int x, int v) {",
+            "  while (x <= tree.size()) {",
+            "    tree[x] = tree[x] + v;",
+            "    x = x + lowbit(x);",
+            "  }",
+            "}",
+            "int getSum(vector<int> &tree, int x) {",
+            "    int res = 0;",
+            "    while (x > 0) {",
+            "        res += tree[x];",
+            "        x -= lowbit(x);",
+            "    }",
+            "    return res;",
+            "}",
+            "$0",
+        ]
     }
 }
